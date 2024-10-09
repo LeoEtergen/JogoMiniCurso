@@ -1,0 +1,5 @@
+res://Scenes/player.tscn
+res://Scenes/level_1.tscn
+res://Scripts/player.gd
+res://Scripts/enemy.gd
+res://Scenes/enemy.tscn
