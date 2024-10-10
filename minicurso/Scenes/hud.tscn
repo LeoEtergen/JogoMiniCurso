@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcnp0dbafg71a"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_3bydh"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3bydh")
+
+[node name="HP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 26.0
+offset_right = 579.0
+offset_bottom = 486.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 300
+text = "HP"
+
+[node name="Coins" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 75.0
+offset_right = 560.0
+offset_bottom = 495.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 300
+text = "Coins"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(9.62615e-08, 0.844007, 0.698872, 1)
+layout_mode = 0
+offset_left = 137.0
+offset_top = 35.0
+offset_right = 529.0
+offset_bottom = 57.0
+value = 50.0
+show_percentage = false

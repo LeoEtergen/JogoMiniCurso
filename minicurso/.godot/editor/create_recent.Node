@@ -1,6 +1,12 @@
+Timer
+Node2D
+Node
 CollisionShape2D
 Area2D
 AnimatedSprite2D
+CanvasLayer
+ProgressBar
+Label
 CharacterBody2D
 TileMap
 Camera2D

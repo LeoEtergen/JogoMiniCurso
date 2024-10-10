@@ -1,7 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2yf7m71qan2d"]
+[gd_scene load_steps=22 format=3 uid="uid://d2yf7m71qan2d"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_h676n"]
 [ext_resource type="Texture2D" uid="uid://bdsdhm4aoatr4" path="res://Sprites/player.png" id="2_u72dr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygpna"]
+atlas = ExtResource("2_u72dr")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wdgj"]
+atlas = ExtResource("2_u72dr")
+region = Rect2(48, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjyu0"]
+atlas = ExtResource("2_u72dr")
+region = Rect2(96, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odntd"]
+atlas = ExtResource("2_u72dr")
+region = Rect2(144, 336, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sr0px"]
 atlas = ExtResource("2_u72dr")
@@ -55,6 +71,23 @@ region = Rect2(240, 192, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ygpna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wdgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjyu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odntd")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sr0px")
 }, {
 "duration": 1.0,
@@ -74,7 +107,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -97,11 +130,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Move",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hf06q"]
 size = Vector2(14.5, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qnoqh"]
+radius = 11.0454
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 script = ExtResource("1_h676n")
@@ -111,9 +147,20 @@ modulate = Color(0.789221, 0.731668, 7.70092e-07, 1)
 position = Vector2(-0.5, 0.5)
 scale = Vector2(0.979167, 0.979167)
 sprite_frames = SubResource("SpriteFrames_6neo1")
-animation = &"Idle"
-frame_progress = 0.867574
+animation = &"Attack"
+autoplay = "Idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_hf06q")
+
+[node name="AttackArea" type="Area2D" parent="."]
+process_mode = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(10, 12)
+shape = SubResource("CircleShape2D_qnoqh")
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

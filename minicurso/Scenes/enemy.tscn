@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpytl7a4wlsnc"]
+[gd_scene load_steps=17 format=3 uid="uid://dpytl7a4wlsnc"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_to43v"]
 [ext_resource type="Texture2D" uid="uid://q3vfdw4av2n5" path="res://Sprites/slime.png" id="2_hhevj"]
@@ -60,7 +60,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -90,7 +90,10 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uxrh"]
-radius = 288.007
+radius = 234.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3b1d"]
+radius = 13.0384
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_to43v")
@@ -99,17 +102,25 @@ script = ExtResource("1_to43v")
 sprite_frames = SubResource("SpriteFrames_x8617")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.463342
+frame_progress = 0.270544
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_1hb7y")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Visibility" type="Area2D" parent="."]
 modulate = Color(0.888321, 0.49422, 0.939935, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
 shape = SubResource("CircleShape2D_8uxrh")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+modulate = Color(0.514162, 0.00143786, 0.697945, 1)
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_m3b1d")
+
+[connection signal="body_entered" from="Visibility" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Visibility" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

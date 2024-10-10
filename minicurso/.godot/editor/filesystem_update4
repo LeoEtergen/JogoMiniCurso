@@ -1,5 +1,10 @@
-res://Scenes/player.tscn
 res://Scenes/level_1.tscn
-res://Scripts/player.gd
-res://Scripts/enemy.gd
+res://Scenes/player.tscn
 res://Scenes/enemy.tscn
+res://Scripts/enemy.gd
+res://Scripts/player.gd
+res://Scenes/hud.tscn
+res://Scripts/hud.gd
+res://Scripts/coin.gd
+res://Scenes/coin.tscn
+res://Scripts/spawner.gd

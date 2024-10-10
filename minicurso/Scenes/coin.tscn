@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://bn02ttlneqoet"]
+
+[ext_resource type="Script" path="res://Scripts/coin.gd" id="1_7h2gh"]
+[ext_resource type="Texture2D" uid="uid://bkqvlj6ecr3n0" path="res://Sprites/Full Coins.png" id="2_ljexy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dxi1"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnrqj"]
+atlas = ExtResource("2_ljexy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llmnx"]
+atlas = ExtResource("2_ljexy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia48p"]
+atlas = ExtResource("2_ljexy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm87f"]
+atlas = ExtResource("2_ljexy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4xl1"]
+atlas = ExtResource("2_ljexy")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v227"]
+atlas = ExtResource("2_ljexy")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ljlpd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnrqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llmnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia48p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm87f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4xl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v227")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_7h2gh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_0dxi1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ljlpd")
+autoplay = "default"
+frame_progress = 0.437223
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
